@@ -6,6 +6,8 @@
 
 # Installing apache2 and php on Ubuntu and CentOS
 # Variables need to be in inventory file
+# pplata1@192.168.0.25 apache_package=apache2 php_package=libapache2-mod-php
+# pplata2@192.168.0.26 apache_package=apache2 php_package=libapache2-mod-php
 
   - name: install apache2 and php package
     package:
