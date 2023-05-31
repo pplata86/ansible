@@ -2,20 +2,22 @@
 
 - hosts: all
   become: true
-  tasks:
+  pre_tasks:
 
 # Installing updates on all hosts
   - name: installing updates (CentOS)
+    tags: always
     dnf:
       update_only: yes
       update_cache: yes
-    when: ansible_distribution_version == "CentOS"
+    when: ansible_distribution == "CentOS"
 
   - name: install updates (Ubuntu)
+    tags: always
     apt:
       upgrade: yes
       update_cache: yes
-    when: ansible_distribution_version == "Ubuntu"
+    when: ansible_distribution == "Ubuntu"
 
 # Installing apache2 and php on Web Servers
 - hosts: web_servers
@@ -23,24 +25,26 @@
   tasks:
 
   - name: install apache2 and php package for Ubuntu
+    tags: apache,apache2,php,ubuntu
     apt:
       name: 
         - apache2
         - libapache2-mod-php
       state: latest
       update_cache: yes
-    when: ansible_distribution_version == "Ubuntu"
+    when: ansible_distribution == "Ubuntu"
 
 #  Installing apache2 and php on CentOS
 
   - name: install apache2 and php package for CentOS 
+    tags: apache,centos,httpd
     dnf:
       name: 
         - httpd
         - php
       state: latest
       update_cache: yes
-    when: ansible_distribution_version == "CentOS"
+    when: ansible_distribution == "CentOS"
 
 # Installing database services
 
@@ -49,16 +53,18 @@
   tasks:
 
   - name: install mariadb package (CentOS)
+    tags: db,mariadb,centos
     dnf:
       name: mariadb
       state: latest
-    when: ansible_distribution_version == "CentOS"
+    when: ansible_distribution == "CentOS"
   
   - name: install mariadb package (Ubuntu)
+    tags: db,mariadb,ubuntu
     apt:
       name: mariadb-server
       state: latest
-    when: ansible_distribution_version == "Ubuntu"
+    when: ansible_distribution == "Ubuntu"
 
 # Installing file server services
 
@@ -67,6 +73,7 @@
   tasks:
   
   - name: install samba package (Ubuntu)
+    tags: samba
     package:
       name: samba
       state: latest

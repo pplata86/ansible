@@ -1,6 +1,6 @@
 [web_servers]
-pplata1@192.168.0.25
+pplata@192.168.0.25
 [db_servers]
-pplata2@192.168.0.26
+pplata@192.168.0.26
 [file_servers]
-pplata2@192.168.0.26
+pplata@192.168.0.26
