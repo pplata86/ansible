@@ -1,0 +1,16 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+# Installing apache2 and php on Ubuntu and CentOS
+# Variables need to be in inventory file
+
+  - name: install apache2 and php package
+    package:
+      name: 
+        - "{{ apache_package }}"
+        - "{{ php_package }}"
+      state: latest
+      update_cache: yes
