@@ -46,6 +46,17 @@
       update_cache: yes
     when: ansible_distribution == "CentOS"
 
+# Copy html file
+
+  - name: copy default html file fot site
+    tags: apache,apache2,httpd
+    copy:
+      src: default_site.html
+      dest: /var/www/html/index.html
+      owner: root
+      group: root
+      mode: 0644
+
 # Installing database services
 
 - hosts: db_servers
