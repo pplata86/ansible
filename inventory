@@ -4,3 +4,5 @@ pplata@192.168.0.25
 pplata@192.168.0.26
 [file_servers]
 pplata@192.168.0.26
+[terraform_station]
+pplata@192.168.0.25
