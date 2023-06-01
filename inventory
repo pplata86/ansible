@@ -1,8 +1,9 @@
 [web_servers]
-pplata@192.168.0.25
+192.168.0.25
+192.168.0.27
 [db_servers]
-pplata@192.168.0.26
+192.168.0.26
 [file_servers]
-pplata@192.168.0.26
+192.168.0.26
 [terraform_station]
-pplata@192.168.0.25
+192.168.0.25
