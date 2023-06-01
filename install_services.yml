@@ -5,19 +5,31 @@
   pre_tasks:
 
 # Installing updates on all hosts
-  - name: installing updates (CentOS)
+  - name: update repo cache (CentOS)
     tags: always
     dnf:
-      update_only: yes
       update_cache: yes
+    changed_when: false
     when: ansible_distribution == "CentOS"
 
-  - name: install updates (Ubuntu)
+  - name: update repo cache (Ubuntu)
     tags: always
     apt:
-      upgrade: yes
       update_cache: yes
+    changed_when: false
     when: ansible_distribution == "Ubuntu"
+
+# Creating users
+- hosts: all
+  become: true
+  tasks:
+
+# Add ssh key for simone
+  - name: add ssh key for simone
+    tags: simone,ssh
+    authorized_key:
+      user: simone
+      key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKDCWcFwgcKmvpV4o0QUknxKIwqOyYSxywXvzbgQJ/F1 ansible"
 
 # Installing apache2 and php on Web Servers
 - hosts: web_servers
