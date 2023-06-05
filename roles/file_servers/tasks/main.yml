@@ -1,0 +1,7 @@
+# Installing file server services
+- name: install samba package (Ubuntu)
+  tags: samba
+  package:
+    name: samba
+    state: latest
+      
